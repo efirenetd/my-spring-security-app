@@ -1,0 +1,16 @@
+
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mydb
+    username: root
+    password: 123456
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+
+product-service:
+  coupon-url: http://localhost:8081/api/v1/coupons
