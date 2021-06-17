@@ -25,12 +25,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic();
+        http.formLogin();
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.POST, API_V1_COUPONS).hasRole("ADMIN")
                 //.mvcMatchers(HttpMethod.GET, API_V1_COUPONS+"/{code}").hasAnyRole("USER", "ADMIN")
                 //Use regular expression to only accept 'all caps and letters' for the path variable 'code'
-                .mvcMatchers(HttpMethod.GET, API_V1_COUPONS+"/{code:^[A-Z]*$}").hasAnyRole("USER", "ADMIN")
+                .mvcMatchers(HttpMethod.GET, API_V1_COUPONS+"/{code:^[A-Z]*$}", "/", "index").hasAnyRole("USER", "ADMIN")
                 .anyRequest().denyAll()
                 .and()
                 .csrf().disable();
